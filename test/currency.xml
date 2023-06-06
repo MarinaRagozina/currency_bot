@@ -1,0 +1,56 @@
+<test>
+    <mockData>
+        <query>https://www.cbr-xml-daily.ru/daily_utf8.xml</query>
+        <response>
+            {
+                "ValCurs": { 
+                    "name": "Foreign Currency Market",
+                    "Date": "03.06.2023",
+                    "Valute": [
+                        { "CharCode": "EUR", "Value": "87,1010", "ID": "R01239", "Nominal": 1, "NumCode": 978, "Name": "Евро"},
+                        { "CharCode": "USD", "Value": "80,8756", "ID": "R01235", "Nominal": 1, "NumCode": 840, "Name": "Доллар США" }
+                    ]
+                }
+            }
+        </response>
+    </mockData>
+
+    <test-case id="HappyPath-euro">
+        <q>курс евро</q>
+        <a>Добрый день!</a>
+        <a>На текущий момент 1€ составляет 87,1010 рублей</a>
+        <a>Остались ли у Вас еще вопросы?</a>
+        <timeoutReply/>
+    </test-case>
+    
+    <test-case id="Dollar">
+        <q>курс доллара</q>
+        <a>Добрый день!</a>
+        <a>На текущий момент 1$ составляет 80,8756 рублей</a>
+        <a>Остались ли у Вас еще вопросы?</a>
+        <timeoutReply/>
+    </test-case>
+    
+    <test-case id="NoCurrency">
+        <q>курс валют</q>
+        <a>Добрый день!</a>
+        <a>Укажите, пожалуйста, какая валюта Вас интересует?</a>
+        <timeoutReply/>
+        <q>юань</q>
+        <a>Нет данных по введенной валюте.</a>
+        <a>Остались ли у Вас еще вопросы?</a>
+        <timeoutReply/>
+    </test-case>
+    
+    <test-case id="NoAnswerFromAPI">
+        <mockData>
+            <query>https://www.cbr-xml-daily.ru/daily_utf8.xml</query>
+            <response>{}</response>
+        </mockData>
+        <q>курс доллара</q>
+        <a>Добрый день!</a>
+        <a>Нет данных по введенной валюте.</a>
+        <a>Остались ли у Вас еще вопросы?</a>
+        <timeoutReply/>
+    </test-case>
+</test>    

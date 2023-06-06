@@ -1,0 +1,20 @@
+<test>
+    <test-case id="Start-Timeout">
+        <q>Добрый день</q>
+        <a>Добрый день!</a>
+        <a>Я Ваш персональный чатбот, чем могу помочь?</a>
+        <timeoutReply interval="180" targetState="/StopSession"/>
+        <timeout/>
+        <a>Увы, я не дождался Вашего ответа.</a>
+        <a>Всегда рад помочь. До свидания!</a>
+    </test-case>
+    
+    <test-case id="NoMatch">
+        <q>fdgdf</q>
+        <a>Добрый день!</a>
+        <a>Извините, я не понимаю Ваш запрос. Пожалуйста, попробуйте перефразировать или задать другой вопрос.</a>
+        <timeoutReply interval="180" targetState="/StopSession"/>
+        <q>ffewio</q>
+        <a>Соединяю с оператором.</a>
+    </test-case>
+</test>
